@@ -39,7 +39,7 @@ public class Function {
 
     }
 
-    private static int findTotatNumberOfMoth(int year, int month) {
+    public static int findTotatNumberOfMoth(int year, int month) {
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);
@@ -60,7 +60,7 @@ public class Function {
         }
     }
 
-    private static int startingPoint(int year, int month) {
+    public static int startingPoint(int year, int month) {
 
         int dateStartingNumber = 0;
 
@@ -94,22 +94,22 @@ public class Function {
 
     public static void viweCaleder(int year, int month) {
 
-        int dateStart = startingPoint(year, month)+1;
+        int dateStart = startingPoint(year, month);
         int dateEnd = findTotatNumberOfMoth(year, month);
         String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
         // m,t,w,t,f,s,s - dates orders
         String[] cal = new String[35];
         int day = 1;
-
         for (int i = 0; i < cal.length; i++) {
-            if (i >= dateStart && i <= dateEnd + dateStart +1) {
-
-                cal[i] = "" + day;
-                day = day + 1;
-            } else {
-                cal[i] = " ";
-            }
+            cal[i] = " ";
         }
+
+        for (int j =1 ;j<=dateEnd;j++){  // 4 , 28 , 1
+            cal[j+dateStart] = ""+day;
+            day++;
+        }
+
+
 
 
         System.out.println("\t" + year + "  OF  " + getMonthName(month));
