@@ -94,7 +94,7 @@ public class Function {
 
     public static void viweCaleder(int year, int month) {
 
-        int dateStart = startingPoint(year, month);
+        int dateStart = startingPoint(year, month)+1;
         int dateEnd = findTotatNumberOfMoth(year, month);
         String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
         // m,t,w,t,f,s,s - dates orders
@@ -102,7 +102,7 @@ public class Function {
         int day = 1;
 
         for (int i = 0; i < cal.length; i++) {
-            if (i >= dateStart && i <= dateEnd + dateStart - 1) {
+            if (i >= dateStart && i <= dateEnd + dateStart +1) {
 
                 cal[i] = "" + day;
                 day = day + 1;
