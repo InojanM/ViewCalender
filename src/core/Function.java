@@ -39,7 +39,7 @@ public class Function {
 
     }
 
-    public static int findTotatNumberOfMoth(int year, int month) {
+    private static int findTotalNumberOfMoth(int year, int month) {
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);
@@ -60,7 +60,7 @@ public class Function {
         }
     }
 
-    public static int startingPoint(int year, int month) {
+    private static int startingPoint(int year, int month) {
 
         int dateStartingNumber = 0;
 
@@ -88,28 +88,24 @@ public class Function {
 
     private static String getMonthName(int num) {
         String[] days = {"JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"};
-        String day = days[num - 1];
-        return day;
+        return days[num - 1];
     }
 
-    public static void viweCaleder(int year, int month) {
+    public static void viewCalender(int year, int month) {
 
         int dateStart = startingPoint(year, month);
-        int dateEnd = findTotatNumberOfMoth(year, month);
-        String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+        int dateEnd = findTotalNumberOfMoth(year, month);
         // m,t,w,t,f,s,s - dates orders
-        String[] cal = new String[35];
+        String[] cal = new String[40];
         int day = 1;
         for (int i = 0; i < cal.length; i++) {
             cal[i] = " ";
         }
 
-        for (int j =1 ;j<=dateEnd;j++){  // 4 , 28 , 1
-            cal[j+dateStart] = ""+day;
+        for (int j = 1; j <= dateEnd; j++) {  // 4 , 28 , 1
+            cal[j + dateStart] = "" + day;
             day++;
         }
-
-
 
 
         System.out.println("\t" + year + "  OF  " + getMonthName(month));
@@ -137,4 +133,52 @@ public class Function {
         }
 
     }
+
+
+    public static int numberValidate(String promt) {
+        String msg = "Enter " + promt;
+        boolean validate = true;
+        int num = 0;
+        while (validate) {
+
+            Scanner in = new Scanner(System.in);
+            System.out.print(msg);
+            String number = in.next();
+            validate = false;
+            try {
+                num = Integer.parseInt(number);
+            } catch (Exception e) {
+                validate = true;
+                msg = "Invalid " + promt + "! plz enter the valid " + promt + " : ";
+            }
+        }
+        return num;
+    }
+
+    public static void calendar() {
+
+        boolean test = true;
+        while (test) {
+
+            int year = numberValidate("year: ");
+            int month = numberValidate("month: ");
+
+            if (year > 0) {
+                if (month > 0 && month < 13) {
+                    viewCalender(year, month);
+                    test = false;
+
+                } else {
+                    System.out.println("month should be more than 0 and less than 13");
+                }
+            } else {
+                System.out.println("year should be more than 0");
+
+
+            }
+        }
+
+    }
+
+
 }
